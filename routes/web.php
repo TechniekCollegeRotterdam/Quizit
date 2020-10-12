@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('designs/{design}/delete', 'DesignController@delete')->name('designs.delete');
+Route::resource('/designs', 'designController');
+
