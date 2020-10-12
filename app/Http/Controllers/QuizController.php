@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\quiz;
+use App\Quiz;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -14,7 +14,9 @@ class QuizController extends Controller
      */
     public function index()
     {
-        //
+        $quizzes = Quiz::all();
+
+        return view('admin.quizzes.index', compact('quizzes'));
     }
 
     /**
@@ -41,10 +43,10 @@ class QuizController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\quiz  $quiz
+     * @param  \App\Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function show(quiz $quiz)
+    public function show(Quiz $quiz)
     {
         //
     }
@@ -52,10 +54,10 @@ class QuizController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\quiz  $quiz
+     * @param  \App\Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function edit(quiz $quiz)
+    public function edit(Quiz $quiz)
     {
         //
     }
@@ -64,10 +66,10 @@ class QuizController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\quiz  $quiz
+     * @param  \App\Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, quiz $quiz)
+    public function update(Request $request, Quiz $quiz)
     {
         //
     }
@@ -75,10 +77,10 @@ class QuizController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\quiz  $quiz
+     * @param  \App\Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function destroy(quiz $quiz)
+    public function destroy(Quiz $quiz)
     {
         //
     }

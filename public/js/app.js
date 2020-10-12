@@ -37331,8 +37331,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\laragon\www\Quizit\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\laragon\www\Quizit\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\school\Leer jaren\Leerjaar3\Devellopment\www\Quizit\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\school\Leer jaren\Leerjaar3\Devellopment\www\Quizit\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
