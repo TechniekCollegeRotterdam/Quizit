@@ -26,7 +26,8 @@ class QuizController extends Controller
      */
     public function create()
     {
-        //
+        $quizzes = Quiz::all();
+        return view('admin.quizzes.create', compact('quizzes'));
     }
 
     /**
