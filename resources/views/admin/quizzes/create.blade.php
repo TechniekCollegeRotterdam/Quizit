@@ -30,13 +30,13 @@
         <div class="form-group">
             <label for="name">Naam</label>
             <input type="text" name="name" class="form-control" id="name"
-                   aria-describedby="quiznameHelp" placeholder="Voer de quiznaam in">
+                   aria-describedby="nameHelp" placeholder="Voer de quiznaam in" value="{{old('name')}}">
         </div>
 
         <div class="form-group">
             <label for="description">Omschrijving</label>
-            <input type="text" class="form-control" name="description" id="description" aria-describedby="quizDescription"
-                   placeholder="Voer een quiz omschrijving in">
+            <textarea type="text" class="form-control" name="description" id="description">
+                      placeholder="Voer een quiz omschrijving in">{{old('description')}}</textarea>
         </div>
         <button type="Submit" class="btn btn-primary">Submit</button>
 

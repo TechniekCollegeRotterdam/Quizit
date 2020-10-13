@@ -55,7 +55,7 @@ class QuizController extends Controller
      */
     public function show(Quiz $quiz)
     {
-        //
+        return view('admin.quizzes.show', compact('quiz'));
     }
 
     /**

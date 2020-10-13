@@ -21,6 +21,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::get('designs/{design}/delete', 'DesignController@delete')->name('designs.delete');
 Route::resource('/designs', 'designController');
+
+Route::get('quizzes/{quiz}/quiz', 'QuizController@delete')
+    ->name('quizzes.delete');
+Route::resource('/quizzes', 'QuizController');
+
 
