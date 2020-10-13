@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuizStoreRequest;
 use App\Quiz;
 use Illuminate\Http\Request;
 
@@ -36,9 +37,14 @@ class QuizController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuizStoreRequest $request)
     {
-        //
+        $quiz = new Quiz();
+        $quiz->name = $request->name;
+        $quiz->description = $request->description;
+        $quiz->save();
+
+        return redirect()->route('quizzes.index')->with('message', 'Quiz toegevoegd');
     }
 
     /**
