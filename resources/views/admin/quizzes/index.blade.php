@@ -33,11 +33,14 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($quizes as $quiz)
+        @foreach($quizzes as $quiz)
             <tr>
                 <td scope="row">{{ $quiz->id }}</td>
                 <td>{{ $quiz->name }}</td>
                 <td>{{ $quiz->description }}</td>
+                <td><a href="{{route('quizzes.show',['quiz' => $quiz->id])}}">Details</a> </td>
+                <td><a href="{{route('quizzes.edit',['quiz' => $quiz->id])}}">Aanpassen</a> </td>
+                <td><a href="{{route('quizzes.delete',['quiz' => $quiz->id])}}">Delete</a> </td>
             </tr>
         @endforeach
         </tbody>
