@@ -27,6 +27,7 @@ class QuizSeeder extends Seeder
             $option_id = $question->answer->random()->id;
             $option = Answer::find($option_id);
             $option->valid = 1;
+            $option->answer='goed';
             $option->save();
 
         }
