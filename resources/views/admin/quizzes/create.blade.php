@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="mt-5">Quizzes</h1>
 
-    @if ($errors->any())
+    @if($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach($errors->all() as $error)
@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <label for="description">Omschrijving</label>
-            <textarea type="text" class="form-control" name="description" id="description">
+            <textarea type="text" class="form-control" name="description" id="description"
                       placeholder="Voer een quiz omschrijving in">{{old('description')}}</textarea>
         </div>
         <button type="Submit" class="btn btn-primary">Submit</button>

@@ -24,11 +24,11 @@ class QuizSeeder extends Seeder
         $questions = Question::all();
 
         foreach($questions as $question){
-            $option_id = $question->answer->random()->id;
-            $option = Answer::find($option_id);
-            $option->valid = 1;
-            $option->answer='goed';
-            $option->save();
+            $answer_id = $question->answer->random()->id;
+            $answer = Answer::find($answer_id);
+            $answer->valid = 1;
+            $answer->answer='goed';
+            $answer->save();
 
         }
     }
