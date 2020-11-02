@@ -1,7 +1,7 @@
 @extends('Layouts.layout')
 
 @section('content')
-    <h1 class="mt-5">Quizzes</h1>
+    <h1 class="mt-5">Vragen</h1>
 
     <nav class="nav">
         <ul class="nav nav-tabs">
@@ -19,9 +19,6 @@
 
     <div class="card">
         <div class="card-header">
-            Quiz
-        </div>
-        <div class="card-body w-auto">
             <h2 class="card-title">{{ $quiz->name }}</h2>
             <p class="card-text">{{ $quiz->description }}</p>
             <p class="card-text">{{$quiz->created_at}}</p>
@@ -31,37 +28,32 @@
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Vraag</th>
-                        <th scope="col">Punten</th>
+                        <th scope="col">Antwoord</th>
+                        <th scope="col">Valid</th>
                         <th scope="col">Aangemaakt</th>
                         <th scope="col">Aangepast</th>
-                        <th scope="col">Antwoorden</th>
                     </tr>
                     </thead>
                     <tbody>
 
-@foreach($quiz->questions as $question)
+                    @foreach($questions->answers as $answer)
                         <tr>
                             <td scope="row">
-                                {{$question->id}}
+                                {{$answer->id}}
                             </td>
                             <td>
-                                {{$question->question}}
+                                {{$answer->answer}}
                             </td>
                             <td>
-                                {{$question->points}}
+                                {{$answer->valid}}
                             </td>
-
                             <td>
                                 {{$question->created_at}}
                             </td>
                             <td>
                                 {{$question->updated_at}}
                             </td>
-                            <td>
-                                <a class="nav-link" href="{{route('questions.show',['question' => $question->id])}}">Vraag Details</a>
-
-                                 @endforeach
+                    @endforeach
                     </tbody>
                     </tbody>
                 </table>
