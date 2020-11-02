@@ -35,8 +35,7 @@
                     </tr>
                     </thead>
                     <tbody>
-
-                    @foreach($question->answers as $answer)
+                    @foreach($question->answer() as $answer)
                         <tr>
                             <td scope="row">
                                 {{$answer->id}}
