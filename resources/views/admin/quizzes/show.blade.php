@@ -59,7 +59,8 @@
                                 {{$question->updated_at}}
                             </td>
                             <td>
-                                <a class="nav-link" href="{{route('questions.show',['questions' => $question->id])}}">Vraag Details</a>
+                                <a class="nav-link" href="{{route('questions.show',['question' => $question->id])}}">Vraag Details</a>
+                            </td>
 
                                  @endforeach
                     </tbody>
