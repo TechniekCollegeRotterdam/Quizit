@@ -12,17 +12,17 @@
                 <a class="nav-link" href="{{ route('quizzes.create') }}">Quiz aanmaken</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('quizzes.show', ['quiz' => $quiz->id]) }}">Quiz Details</a>
+{{--                <a class="nav-link active" href="{{ route('quizzes.show', ['quiz' => $quiz->id]) }}">Quiz Details</a>--}}
             </li>
         </ul>
     </nav>
 
     <div class="card">
         <div class="card-header">
-            <h2 class="card-title">{{ $quiz->name }}</h2>
-            <p class="card-text">{{ $quiz->description }}</p>
-            <p class="card-text">{{$quiz->created_at}}</p>
-            <p class="card-text">{{$quiz->updated_at}}</p>
+            <h2 class="card-title">{{ $questions>question }}</h2>
+            <p class="card-text">{{ $questions->points }}</p>
+            <p class="card-text">{{$questions->created_at}}</p>
+            <p class="card-text">{{$questions->updated_at}}</p>
             <li class="list-group-item">
                 <table class="table table-striped">
                     <thead class="thead-dark">

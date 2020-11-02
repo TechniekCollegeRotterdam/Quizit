@@ -24,7 +24,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        $questions = Question::all();
+        return view('admin.quizzes.create', compact('questions'));
     }
 
     /**
@@ -46,7 +47,8 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        $question = Question::all();
+        return view('admin.questions.show', compact('question'));
     }
 
     /**
