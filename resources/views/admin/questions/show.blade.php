@@ -19,10 +19,10 @@
 
     <div class="card">
         <div class="card-header">
-            <h2 class="card-title">{{ $questions>question }}</h2>
-            <p class="card-text">{{ $questions->points }}</p>
-            <p class="card-text">{{$questions->created_at}}</p>
-            <p class="card-text">{{$questions->updated_at}}</p>
+            <h2 class="card-title">{{$question->question}}</h2>
+            <p class="card-text">{{ $question->points}}</p>
+            <p class="card-text">{{$question->created_at}}</p>
+            <p class="card-text">{{$question->updated_at}}</p>
             <li class="list-group-item">
                 <table class="table table-striped">
                     <thead class="thead-dark">
@@ -36,7 +36,7 @@
                     </thead>
                     <tbody>
 
-                    @foreach($questions->answers as $answer)
+                    @foreach($question->answers as $answer)
                         <tr>
                             <td scope="row">
                                 {{$answer->id}}

@@ -47,7 +47,6 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        $question = Question::all();
         return view('admin.questions.show', compact('question'));
     }
 
