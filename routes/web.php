@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('layouts.layout');
 });
 
 Auth::routes();
@@ -23,13 +23,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('designs/{design}/delete', 'DesignController@delete')->name('designs.delete');
-Route::resource('/designs', 'designController');
+Route::resource('/designs', 'DesignController');
 
 Route::get('quizzes/{quiz}/quiz', 'QuizController@delete')
     ->name('quizzes.delete');
 Route::resource('/quizzes', 'QuizController');
 
-Route::get('questions/{question}/question', 'Question@delete')
-    ->name('question.delete');
+Route::get('questions/{question}/question', 'QuestionController@delete')
+    ->name('questions.delete');
 Route::resource('/questions', 'QuestionController');
 
