@@ -29,4 +29,7 @@ Route::get('quizzes/{quiz}/quiz', 'QuizController@delete')
     ->name('quizzes.delete');
 Route::resource('/quizzes', 'QuizController');
 
+Route::get('questions/{question}/question', 'Question@delete')
+    ->name('question.delete');
+Route::resource('/questions', 'QuestionController');
 

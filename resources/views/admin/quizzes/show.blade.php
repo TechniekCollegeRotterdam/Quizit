@@ -21,7 +21,7 @@
         <div class="card-header">
             Quiz
         </div>
-        <div class="card-body">
+        <div class="card-body w-auto">
             <h2 class="card-title">{{ $quiz->name }}</h2>
             <p class="card-text">{{ $quiz->description }}</p>
             <p class="card-text">{{$quiz->created_at}}</p>
@@ -33,9 +33,9 @@
                         <th scope="col">#</th>
                         <th scope="col">Vraag</th>
                         <th scope="col">Punten</th>
-                        <th scope="col">Antwoorden</th>
                         <th scope="col">Aangemaakt</th>
                         <th scope="col">Aangepast</th>
+                        <th scope="col">Antwoorden</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,48 +51,17 @@
                             <td>
                                 {{$question->points}}
                             </td>
-                            <td>
-                                <table class="table table-striped">
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Antwoord</th>
-                                        <th scope="col">Valid</th>
-                                        <th scope="col">Aangemaakt</th>
-                                        <th scope="col">Aangepast</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($question->answer->sortByDESC('valid') as $answer)
-                                        <tr>
-                                            <td scope="row">
-                                                {{$answer->id}}
-                                            </td>
-                                            <td>
-                                                {{$answer->answer}}
-                                            </td>
-                                            <td>
-                                                {{$answer->valid}}
-                                            </td>
-                                            <td>
-                                                {{$answer->created_at}}
-                                            </td>
-                                            <td>
-                                                {{$answer->updated_at}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </td>
+
                             <td>
                                 {{$question->created_at}}
                             </td>
                             <td>
                                 {{$question->updated_at}}
                             </td>
-                        </tr>
-                    @endforeach
+                            <td>
+                                <a class="nav-link" href="{{route('questions.show',['quiz' => $quiz->id])}}">Vraag Details</a>
+
+                                 @endforeach
                     </tbody>
                     </tbody>
                 </table>
