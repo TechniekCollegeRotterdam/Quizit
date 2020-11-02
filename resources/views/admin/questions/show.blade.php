@@ -12,7 +12,7 @@
                 <a class="nav-link" href="{{ route('quizzes.create') }}">Quiz aanmaken</a>
             </li>
             <li class="nav-item">
-{{--                <a class="nav-link active" href="{{ route('quizzes.show', ['quiz' => $quiz->id]) }}">Quiz Details</a>--}}
+                <a class="nav-link active" href="{{ route('quizzes.show', ['quiz' => $quiz->id]) }}">Quiz Details</a>
             </li>
         </ul>
     </nav>
@@ -54,7 +54,6 @@
                                 {{$question->updated_at}}
                             </td>
                     @endforeach
-                    </tbody>
                     </tbody>
                 </table>
             </li>

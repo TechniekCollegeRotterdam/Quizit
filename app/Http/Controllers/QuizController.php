@@ -6,6 +6,7 @@ use App\Http\Requests\QuizStoreRequest;
 use App\Quiz;
 use Illuminate\Http\Request;
 
+
 class QuizController extends Controller
 {
     /**
@@ -45,7 +46,11 @@ class QuizController extends Controller
         $quiz->save();
 
         return redirect()->route('quizzes.index')->with('message', 'Quiz toegevoegd');
-    }
+        }
+
+
+
+
 
     /**
      * Display the specified resource.
