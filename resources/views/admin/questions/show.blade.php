@@ -6,13 +6,13 @@
     <nav class="nav">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('quizzes.index') }}">Index</a>
+                <a class="nav-link" href="{{ route('questions.index') }}">Index</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('quizzes.create') }}">Quiz aanmaken</a>
+                <a class="nav-link" href="{{ route('questions.create') }}">Vraag aanmaken</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('quizzes.show', ['quiz' => $quiz->id]) }}">Quiz Details</a>
+                <a class="nav-link active" href="{{ route('questions.show', ['question' => $question->id]) }}">Quiz Details</a>
             </li>
         </ul>
     </nav>

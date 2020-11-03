@@ -36,14 +36,13 @@
         <div class="form-group">
             <label for="points">Punten</label>
             <input type="number" step="1" min="0" max="10" name="points" id="points" class="form-control"
-            aria-describedby="pointHelp" placeholder="Voer het aantal punten in voor deze vraag" value="{{old('')}}">
+            aria-describedby="pointHelp" placeholder="Voer het aantal punten in voor deze vraag" value="{{old('points')}}">
         </div>
 
         <div class="form-group">
-            <label for="description">Omschrijving</label>
-            <textarea type="text" class="form-control" name="description" id="description"
-                      placeholder="Voer een quiz omschrijving in">{{old('description')}}</textarea>
-        </div>
+            <label for="antwoord1">Antwoord 1</label>
+            <input type="text" class="form-control" name="antwoord1" id="antwoord1"
+                      placeholder="Voer het eerste antwoord in">{{old('antwoord1')}}">
 
 
         <button type="submit" name="AddQuestion">Vraag toevoegen</button>
