@@ -1,7 +1,7 @@
 @extends('Layouts.layout')
 
 @section('content')
-    <h1 class="mt-5">Quizzes</h1>
+    <h1 class="mt-5">Vragen</h1>
 
     @if($errors->any())
         <div class="alert alert-danger">
@@ -28,6 +28,11 @@
         @csrf
 
         <div class="form-group">
+            <label for="quiz_id"></label>
+            <input type="number" id="quiz_id" value="{{ $question }}" disabled>
+        </div>
+
+        <div class="form-group">
             <label for="question">Vraag</label>
             <input type="text" name="question" class="form-control" id="question"
                    aria-describedby="nameHelp" placeholder="Voer de vraag in" value="{{old('question')}}">
@@ -39,10 +44,35 @@
             aria-describedby="pointHelp" placeholder="Voer het aantal punten in voor deze vraag" value="{{old('points')}}">
         </div>
 
+
         <div class="form-group">
-            <label for="antwoord1">Antwoord 1</label>
-            <input type="text" class="form-control" name="antwoord1" id="antwoord1"
-                      placeholder="Voer het eerste antwoord in">{{old('antwoord1')}}">
+            <label for="goodanswer">Goed Antwoord</label>
+            <input type="text" class="form-control" name="goodanswer" id="goodanswer"
+                      placeholder="Voer het goede antwoord in" value="{{old('goodanswer')}}">
+        </div>
+
+
+        <div class="form-group">
+                <label for="wronganswer1">Fout antwoord 1</label>
+                <input type="text" class="form-control" name="wronganswer1" id="wronganswer1"
+                    placeholder="Voer het eerste foute antwoord in" value="{{old('wronganswer1')}}">
+        </div>
+
+
+            <div class="form-group">
+                <label for="wronganswer2">Fout antwoord 2</label>
+                <input type="text" class="form-control" name="wronganswer2" id="wronganswer2"
+                   placeholder="Voer het tweede foute antwoord in" value="{{old('wronganswer2')}}">
+            </div>
+
+        <div class="form-group">
+            <label for="wronganswer3">Fout antwoord 3</label>
+            <input type="text" class="form-control" name="wronganswer3" id="wronganswer3"
+                   placeholder="Voer het derde foute antwoord in" value="{{old('wronganswer3')}}">
+        </div>
+
+
+
 
 
         <button type="submit" name="AddQuestion">Vraag toevoegen</button>

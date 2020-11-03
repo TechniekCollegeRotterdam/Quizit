@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
+use App\Http\Requests\QuestionStoreRequest;
 use App\Question;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,7 @@ class QuestionController extends Controller
     public function create()
     {
         $questions = Question::all();
-        return view('admin.quizzes.create', compact('questions'));
+        return view('admin.questions.create', compact('questions'));
     }
 
     /**
@@ -34,9 +36,38 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuestionStoreRequest $request)
     {
-        //
+        $question = new Question();
+        $question->question = $request->question;
+        $question->points = $request->points;
+        $question->quiz_id = $request->quiz_id;
+        $question->save();
+
+        $goodanswer = new Answer();
+        $goodanswer->answer = $request->answer;
+        $goodanswer->valid = $request->valid = 1;
+        $goodanswer->question_id = $question->id;
+
+
+        $wronganswer1 = new Answer();
+        $wronganswer1->answer = $request->amswer;
+        $wronganswer1->valid = $request->valid = 0;
+        $wronganswer1->question_id = $question->id;
+
+        $wronganswer2 = new Answer();
+        $wronganswer2->answer = $request->amswer;
+        $wronganswer2->valid = $request->valid = 0;
+        $wronganswer2->question_id = $question->id;
+
+        $wronganswer3 = new Answer();
+        $wronganswer3->answer = $request->amswer;
+        $wronganswer3->valid = $request->valid = 0;
+        $wronganswer3->question_id = $question->id;
+
+        return redirect()->route('quizzes.index')->with('message', 'vraag en antwoorden toegevoegd');
+
+
     }
 
     /**
