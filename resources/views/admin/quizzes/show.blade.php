@@ -35,7 +35,7 @@
                         <th scope="col">Punten</th>
                         <th scope="col">Aangemaakt</th>
                         <th scope="col">Aangepast</th>
-                        <th scope="col">Antwoorden</th>
+                        <th scope="col">Vraag & Antwoorden</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -59,9 +59,15 @@
                                 {{$question->updated_at}}
                             </td>
                             <td>
-                                <a class="nav-link" href="{{route('questions.show', ['question' => $question->id])}}">Vraag Details</a>
+<<<<<<< Updated upstream
+                                <a class="nav-link" href="{{route('questions.show',['questions' => $question->id])}}">Vraag Details</a>
+=======
+                                <a class="nav-link" href="{{route('questions.show',['question' => $question->id])}}">Vraag & Andwoord Details</a>
+                            </td>
+>>>>>>> Stashed changes
 
                                  @endforeach
+                    </tbody>
                     </tbody>
                 </table>
             </li>

@@ -6,23 +6,21 @@
     <nav class="nav">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('questions.index') }}">Index</a>
+                <a class="nav-link" href="{{ route('quizzes.index') }}">Index</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('questions.create') }}">Vraag aanmaken</a>
+                <a class="nav-link" href="{{ route('quizzes.create') }}">Quiz aanmaken</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="{{ route('questions.show', ['question' => $question->id]) }}">Quiz Details</a>
-            </li>
+
         </ul>
     </nav>
 
     <div class="card">
         <div class="card-header">
             <h2 class="card-title">{{$question->question}}</h2>
-            <p class="card-text">{{ $question->points}}</p>
-            <p class="card-text">{{$question->created_at}}</p>
-            <p class="card-text">{{$question->updated_at}}</p>
+            <p class="card-text">Point: {{ $question->points}}</p>
+            <p class="card-text">Aangemaak: {{$question->created_at}}</p>
+            <p class="card-text">Aangepast: {{$question->updated_at}}</p>
             <li class="list-group-item">
                 <table class="table table-striped">
                     <thead class="thead-dark">
