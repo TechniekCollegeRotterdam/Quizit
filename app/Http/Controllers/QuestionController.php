@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Answer;
 use App\Http\Requests\QuestionStoreRequest;
 use App\Question;
+use App\Quiz;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -26,8 +27,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        $questions = Question::all();
-        return view('admin.questions.create', compact('questions'));
+        $quizzes = Quiz::all();
+        return view('admin.questions.create', compact('quizzes'));
     }
 
     /**

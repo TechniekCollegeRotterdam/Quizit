@@ -27,10 +27,6 @@
     <form method="POST" action="{{ route('questions.store') }}">
         @csrf
 
-        <div class="form-group">
-            <label for="quiz_id"></label>
-            <input type="number" id="quiz_id" value="{{ $question }}" disabled>
-        </div>
 
         <div class="form-group">
             <label for="question">Vraag</label>
@@ -69,6 +65,24 @@
             <label for="wronganswer3">Fout antwoord 3</label>
             <input type="text" class="form-control" name="wronganswer3" id="wronganswer3"
                    placeholder="Voer het derde foute antwoord in" value="{{old('wronganswer3')}}">
+        </div>
+
+        <div class="form-group">
+            <label for="quiz_id"></label>
+
+            <select name="quiz_id" id="quiz_id" class="form-control">
+                @foreach($quizzes as $quiz)
+            <option value="{{ $quiz->id }}"
+            @if(old('quiz_id') == $quiz->id)
+                selected
+                    @endif
+            >{{ $quiz->name }}</option>
+
+
+                @endforeach
+
+            </select>
+
         </div>
 
 
