@@ -89,7 +89,7 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        return view('admin.quizzes.edit', compact('question'));
     }
 
     /**

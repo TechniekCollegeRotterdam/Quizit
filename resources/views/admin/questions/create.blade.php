@@ -29,7 +29,7 @@
 
         <div class="form-group">
             <label for="quiz_id"></label>
-            <input type="number" id="quiz_id" value="{{ $question }}" disabled>
+            <input type="number" id="quiz_id" value="{{$quiz}}" disabled>
         </div>
 
         <div class="form-group">

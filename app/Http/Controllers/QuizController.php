@@ -71,7 +71,7 @@ class QuizController extends Controller
      */
     public function edit(Quiz $quiz)
     {
-        //
+        return view('admin.quizzes.edit', compact('quiz'));
     }
 
     /**
@@ -83,7 +83,10 @@ class QuizController extends Controller
      */
     public function update(Request $request, Quiz $quiz)
     {
-        //
+        $quiz->name = $request->name;
+        $quiz->description = $request->description;
+        $quiz->save();
+        return  redirect()->route('quizzes.index')->with('message','Quiz geupdate');
     }
 
     /**
