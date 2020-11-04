@@ -77,12 +77,8 @@
                 selected
                     @endif
             >{{ $quiz->name }}</option>
-
-
                 @endforeach
-
             </select>
-
         </div>
 
 
