@@ -23,6 +23,7 @@ class QuestionStoreRequest extends FormRequest
      */
     public function rules()
     {
+        $question = $this->route('question');
         return [
             'question' => 'required|unique:questions|max:250',
             'points' => 'required|numeric|min:0|max:10',
