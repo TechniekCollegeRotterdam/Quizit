@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\QuizStoreRequest;
 use App\Quiz;
 use Illuminate\Http\Request;
+use Throwable;
 
 
 class QuizController extends Controller
@@ -89,6 +90,13 @@ class QuizController extends Controller
         return  redirect()->route('quizzes.index')->with('message','Quiz geupdate');
     }
 
+
+    //** show the form for deleting the specified resource. ...*/*/
+    public function delete(quiz $quiz)
+    {
+        return view('admin.quizzes.delete', compact('quiz'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -97,6 +105,14 @@ class QuizController extends Controller
      */
     public function destroy(Quiz $quiz)
     {
-        //
+        try {
+            $quiz->delete();
+        } catch (Throwable $e){
+            report($e);
+            return redirect()->route('quizzes.index')->with('wrong','quiz bevat vragen.
+            Verwijder deze alvorens deze quiz te verwijderen.');
+        }
+        $quiz->delete();
+        return  redirect()->route('quizzes.index')->with('message','quiz Verwijderd');
     }
 }

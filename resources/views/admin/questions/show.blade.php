@@ -9,6 +9,9 @@
                 <a class="nav-link" href="{{ route('quizzes.index') }}">Index</a>
             </li>
             <li class="nav-item">
+                <a href="{{route('questions.delete',['question' => $question->id])}}">Vraag verwijderen</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('quizzes.create') }}">Quiz aanmaken</a>
             </li>
 

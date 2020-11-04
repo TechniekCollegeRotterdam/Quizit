@@ -111,8 +111,16 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
+
+    //** show the form for deleting the specified resource. ...*/*/
+    public function delete(quiz $question)
+    {
+        return view('admin.questions.delete', compact('question'));
+    }
+
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return  redirect()->route('quizzes.index')->with('message','vraag Verwijderd');
     }
 }
