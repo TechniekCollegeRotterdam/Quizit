@@ -37,3 +37,5 @@ Route::get('questions/{question}/question', 'QuestionController@delete')
 
 Route::resource('/questions', 'QuestionController');
 
+Route::resource('/game', 'GameController');
+

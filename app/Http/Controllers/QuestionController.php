@@ -115,6 +115,7 @@ class QuestionController extends Controller
     //** show the form for deleting the specified resource. ...*/*/
     public function delete(quiz $question)
     {
+        $question->question();
         return view('admin.questions.delete', compact('question'));
     }
 

@@ -36,7 +36,7 @@
             <label for="question">
                 Vraag
             </label>
-            <p class="text-danger border border-dark">{{($question->id)}}</p>
+            <p class="text-danger border border-dark">{{($question->qeustion)}}</p>
             <input type="hidden" class="form-control" name="question"
                    aria-describedby="categorienameHelp" value="{{$question->id}}">
         </div>
