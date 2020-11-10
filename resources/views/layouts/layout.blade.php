@@ -52,7 +52,7 @@
                     <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Game</a>
+                    <a class="nav-link" href="{{route('game.index')}}">Game</a>
                 </li>
                 <li class="nav-item">
                     <div class="dropdown">
