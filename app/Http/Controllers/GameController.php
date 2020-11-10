@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Game;
+use App\Quiz;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -14,7 +15,9 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
+        $game = Game::with('quizzes')->get();
+
+        return view('public.game.index', compact('game'));
     }
 
     /**
@@ -24,7 +27,9 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        $user = auth()->user();
+        $quizzes = quiz::all();
+        return view('public.game.create', compact('quizzes','user'));
     }
 
     /**
@@ -46,7 +51,7 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        //
+
     }
 
     /**

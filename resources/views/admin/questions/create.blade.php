@@ -72,17 +72,9 @@
         </div>
 
         <div class="form-group">
-            <label for="quiz_id"></label>
-
-            <select name="quiz_id" id="quiz_id" class="form-control">
-                @foreach($quizzes as $quiz)
-            <option value="{{ $quiz->id }}"
-            @if(old('quiz_id') == $quiz->id)
-                selected
-                    @endif
-            >{{ $quiz->name }}</option>
-                @endforeach
-            </select>
+            <label for="quiz_id">Quiz_id</label>
+            <input type="text" class="form-control" name="quiz_id" id="quiz_id"
+                   placeholder="quiz_id" value="{{$quiz}}">
         </div>
 
 

@@ -28,17 +28,17 @@
         </div>
     @endif
 
-    <form method="POST" action="{{route('quizzes.destroy', ['quiz' => $quiz->id])}}">
+    <form method="POST" action="{{route('questions.destroy', ['question' => $question->id])}}">
         @method('DELETE')
         @csrf
 
         <div class="form-group">
-            <label for="name">
-                Categorie naam
+            <label for="question">
+                Vraag
             </label>
-            <p class="text-danger border border-dark">{{$quiz->name}}</p>
-            <input type="hidden" class="form-control" name="name"
-                   aria-describedby="categorienameHelp" value="{{$quiz->name}}">
+            <p class="text-danger border border-dark">{{($question->qeustion)}}</p>
+            <input type="hidden" class="form-control" name="question"
+                   aria-describedby="categorienameHelp" value="{{$question->id}}">
         </div>
         <button type="submit"  class="btn-danger">Delete</button>
 
