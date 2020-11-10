@@ -40,7 +40,13 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $game = new Game();
+        $game->quiz_id = $request->question_id;
+        $game->points = null;
+        $game->user_id = $request->user;
+        $game->save();
+
+        return redirect()->route('quizzes.index')->with('message', 'Quiz toegevoegd');
     }
 
     /**

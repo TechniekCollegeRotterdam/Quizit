@@ -15,6 +15,14 @@ class CreateGameanswersTable extends Migration
     {
         Schema::create('gameanswers', function (Blueprint $table) {
             $table->id();
+            $table->foreign('game_id')
+                ->references('id')->on('games')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('answer_id')
+                ->references('id')->on('answers')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }
