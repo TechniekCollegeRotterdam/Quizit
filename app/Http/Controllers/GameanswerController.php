@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Game;
 use App\Gameanswer;
+use App\Question;
+use App\Quiz;
 use Illuminate\Http\Request;
 
 class GameanswerController extends Controller
@@ -24,18 +27,37 @@ class GameanswerController extends Controller
      */
     public function create()
     {
-        //
+        $question = question::with(['answer'=>function($query){
+            $query->inRandomOrder();
+        }]);
+        session()->put($question);
+        return view('public.gameAnswer.create',compact('question'));
+//        return view('public.gameAnswer.create',compact('question'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage.np
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $question = session()->get('question');
+        $game = session()->get('game');
+        if ($question!=null)
+        {
+            //        dd($request);
+            $gameAnswer = new Gameanswer();
+            $gameAnswer->game_id = $game;
+            $gameAnswer->answer_id = $request->answer_id;
+            $gameAnswer->save();
+            return redirect()->route('gameAnswer.create')->with('message', 'Antwoord opgeslagen');
+        }
+        else
+        {
+            return redirect()->route('game.show')->with('message', 'Antwoord opgeslagen');
+        }
     }
 
     /**

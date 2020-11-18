@@ -25,6 +25,7 @@ class CreateGamesTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->string('points','4')->nullable();
             $table->timestamps();
         });
     }

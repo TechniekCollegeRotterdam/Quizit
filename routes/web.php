@@ -35,7 +35,8 @@ Route::get('questions/{question}/question', 'QuestionController@delete')
 //Route::get('questions/{question}/question', 'QuestionController@create',$quiz->id)
 //    ->name('questions.create');
 
+
 Route::resource('/questions', 'QuestionController');
 
 Route::resource('/game', 'GameController');
-
+Route::resource('/gameAnswer', 'GameanswerController');
