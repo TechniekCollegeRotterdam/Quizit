@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Game;
 use App\Gameanswer;
 use App\Question;
@@ -25,12 +26,15 @@ class GameanswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $question = question::with(['answer'=>function($query){
-            $query->inRandomOrder();
-        }]);
-        session()->put($question);
+
+        $question = Question::where('quiz_id', $request->session()->get('quiz'))
+            ->inRandomOrder()
+                
+                ->limit(1)
+                ->get();
+        $request->session()->put('question', $question);
         return view('public.gameAnswer.create',compact('question'));
 //        return view('public.gameAnswer.create',compact('question'));
     }
@@ -43,6 +47,7 @@ class GameanswerController extends Controller
      */
     public function store(Request $request)
     {
+
         $question = session()->get('question');
         $game = session()->get('game');
         if ($question!=null)
