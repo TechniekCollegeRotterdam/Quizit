@@ -3,6 +3,12 @@
 @section('content')
     <h1 class="mt-5">Vragen</h1>
 
+    @if (session('message'))
+        <div class="alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+
     @if($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -69,9 +75,9 @@
         </div>
 
         <div class="form-group">
-            <label hidden for="quiz_id">Quiz_id</label>
+            <label for= "quiz_id">Quiz_id</label>
 
-            <textarea hidden disabled type="text" class="form-control input-field" name="quiz_id" id="quiz_id">{{$quiz->id}}</textarea>
+            <textarea hidden type="text" class="form-control input-field" name="quiz_id" id="quiz_id">{{$quiz->id}}</textarea>
 
 
         </div>
@@ -80,8 +86,8 @@
 
 
 
-        <button type="submit" name="AddQuestion" id="AddQuestion" disabled>Vraag toevoegen</button>
-        <button type="Submit" class="btn btn-primary text-success" name="PublishQuestion" disabled>Publiceer vraag</button>
+        <button type="submit" name="AddQuestion" id="AddQuestion" class="btn btn-primary" value="AddQuestion">Vraag toevoegen</button>
+        <button type="Submit" name="PublishQuestion" value="PublishQuestion">Publiceer vraag</button>
 
     </form>
 @endsection
