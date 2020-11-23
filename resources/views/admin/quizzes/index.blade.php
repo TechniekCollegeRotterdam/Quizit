@@ -47,7 +47,7 @@
                 <td>{{ $quiz->description }}</td>
                 <td><a href="{{route('quizzes.show',['quiz' => $quiz->id])}}">Details</a> </td>
                 <td><a href="{{route('quizzes.edit',['quiz' => $quiz->id])}}">Aanpassen</a> </td>
-                <td> <a class="nav-link" href="{{ route('questions.create', ['quiz'=>$quiz->id]) }}">Vraag toevoegen</a></td>
+                <td> <a class="nav-link" href="{{ route('admin.questions.create', $quiz) }}">Vraag toevoegen</a></td>
                 <td><a href="{{route('quizzes.delete',['quiz' => $quiz->id])}}">Delete</a> </td>
             </tr>
         @endforeach

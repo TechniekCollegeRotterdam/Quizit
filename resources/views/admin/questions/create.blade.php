@@ -19,18 +19,15 @@
                 <a class="nav-link" href="{{ route('quizzes.index') }}">Index</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('questions.create') }}">Vraag toevoegen</a>
+                <a class="nav-link active" href="{{ route('questions.create', ['quiz' => $quiz->id])}}">Vraag toevoegen</a>
             </li>
         </ul>
     </nav>
 
-    <form method="POST" action="{{ route('questions.store') }}">
+    <form method="POST" action="{{ route('admin.questions.store', ['quiz' => $quiz->id]) }}" enctype="multipart/form-data">
         @csrf
 
-        <div class="form-group">
-            <label for="quiz_id"></label>
-            <input type="number" id="quiz_id" value="{{$quiz}}" disabled>
-        </div>
+
 
         <div class="form-group">
             <label for="question">Vraag</label>
@@ -72,17 +69,19 @@
         </div>
 
         <div class="form-group">
-            <label for="quiz_id">Quiz_id</label>
-            <input type="text" class="form-control" name="quiz_id" id="quiz_id"
-                   placeholder="quiz_id" value="{{$quiz}}">
+            <label hidden for="quiz_id">Quiz_id</label>
+
+            <textarea hidden disabled type="text" class="form-control input-field" name="quiz_id" id="quiz_id">{{$quiz->id}}</textarea>
+
+
         </div>
 
 
 
 
 
-        <button type="submit" name="AddQuestion">Vraag toevoegen</button>
-        <button type="Submit" class="btn btn-primary" name="PublishQuiz">Submit</button>
+        <button type="submit" name="AddQuestion" id="AddQuestion" disabled>Vraag toevoegen</button>
+        <button type="Submit" class="btn btn-primary" name="PublishQuestion" disabled>Publiceer vraag</button>
 
     </form>
 @endsection

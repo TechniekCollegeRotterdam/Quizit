@@ -72,6 +72,9 @@ class QuizController extends Controller
      */
     public function edit(Quiz $quiz)
     {
+
+
+        $quizzes = Quiz::all();
         return view('admin.quizzes.edit', compact('quiz'));
     }
 
