@@ -8,6 +8,7 @@ use App\Question;
 use App\Quiz;
 use DB;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class QuestionController extends Controller
 {
@@ -37,7 +38,7 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(QuestionStoreRequest $request)
@@ -74,11 +75,15 @@ class QuestionController extends Controller
         $wronganswer3->save();
 
 
+        if
+        ($request->has('AddQuestion')) {
+            return redirect()->route('admin.questions.create', ['quiz' => $request->quiz_id])->with('message', 'vraag en antwoorden toegevoegd');
+        }
 
-
-        return redirect()->route('quizzes.index')->with('message', 'vraag en antwoorden toegevoegd');
-
-
+        elseif
+        ($request->has('PublishQuestion')) {
+            return redirect()->route('quizzes.index')->with('message', 'vraag en antwoorden toegevoegd');
+        }
     }
 
     /**
