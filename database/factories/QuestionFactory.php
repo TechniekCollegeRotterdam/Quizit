@@ -10,6 +10,6 @@ $factory->define(Question::class, function (Faker $faker) {
     return [
         'question' => $faker->paragraph(4),
         'points' => $faker->numberBetween($int1 = 0, $int2 = 10),
-        'quiz_id' =>quiz::all()->random()->id
+        'quiz_id' => Quiz::all()->random()->id
     ];
 });

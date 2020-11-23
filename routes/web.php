@@ -32,8 +32,10 @@ Route::resource('/quizzes', 'QuizController');
 Route::get('questions/{question}/question', 'QuestionController@delete')
     ->name('questions.delete');
 
-//Route::get('questions/{question}/question', 'QuestionController@create',$quiz->id)
-//    ->name('questions.create');
+Route::get('quizzes/{quiz}/questions/create', 'QuestionController@create')
+    ->name('admin.questions.create');
+Route::post('quizzes/{quiz}/questions', 'QuestionController@store')
+    ->name('admin.questions.store');
 
 Route::resource('/questions', 'QuestionController');
 
