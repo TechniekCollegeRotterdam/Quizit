@@ -43,27 +43,27 @@
 
 
         <div class="form-group">
-            <label for="goodanswer">Goed Antwoord</label>
+            <label for="goodanswer" class="text-success"><strong>Goed Antwoord</strong></label>
             <input type="text" class="form-control" name="goodanswer" id="goodanswer"
                       placeholder="Voer het goede antwoord in" value="{{old('goodanswer')}}">
         </div>
 
 
         <div class="form-group">
-                <label for="wronganswer1">Fout antwoord 1</label>
+            <label for="wronganswer1" class="text-danger"><strong>Fout antwoord 1</strong></label>
                 <input type="text" class="form-control" name="wronganswer1" id="wronganswer1"
                     placeholder="Voer het eerste foute antwoord in" value="{{old('wronganswer1')}}">
         </div>
 
 
             <div class="form-group">
-                <label for="wronganswer2">Fout antwoord 2</label>
+                <label for="wronganswer2" class="text-danger"><strong>Fout antwoord 2</strong></label>
                 <input type="text" class="form-control" name="wronganswer2" id="wronganswer2"
                    placeholder="Voer het tweede foute antwoord in" value="{{old('wronganswer2')}}">
             </div>
 
         <div class="form-group">
-            <label for="wronganswer3">Fout antwoord 3</label>
+            <label for="wronganswer3" class="text-danger"><strong>Fout antwoord 3</strong></label>
             <input type="text" class="form-control" name="wronganswer3" id="wronganswer3"
                    placeholder="Voer het derde foute antwoord in" value="{{old('wronganswer3')}}">
         </div>
@@ -81,7 +81,7 @@
 
 
         <button type="submit" name="AddQuestion" id="AddQuestion" disabled>Vraag toevoegen</button>
-        <button type="Submit" class="btn btn-primary" name="PublishQuestion" disabled>Publiceer vraag</button>
+        <button type="Submit" class="btn btn-primary text-success" name="PublishQuestion" disabled>Publiceer vraag</button>
 
     </form>
 @endsection
