@@ -31,7 +31,6 @@ class GameanswerController extends Controller
 
         $question = Question::where('quiz_id', $request->session()->get('quiz'))
             ->inRandomOrder()
-                
                 ->limit(1)
                 ->get();
         $request->session()->put('question', $question);
