@@ -37,7 +37,8 @@ Route::get('quizzes/{quiz}/questions/create', 'QuestionController@create')
 Route::post('quizzes/{quiz}/questions', 'QuestionController@store')
     ->name('admin.questions.store');
 
+
 Route::resource('/questions', 'QuestionController');
 
 Route::resource('/game', 'GameController');
-
+Route::resource('/gameAnswer', 'GameanswerController');

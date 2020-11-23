@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
+use App\Game;
 use App\Gameanswer;
+use App\Question;
+use App\Quiz;
 use Illuminate\Http\Request;
 
 class GameanswerController extends Controller
@@ -22,20 +26,43 @@ class GameanswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+        $question = Question::where('quiz_id', $request->session()->get('quiz'))
+            ->inRandomOrder()
+                
+                ->limit(1)
+                ->get();
+        $request->session()->put('question', $question);
+        return view('public.gameAnswer.create',compact('question'));
+//        return view('public.gameAnswer.create',compact('question'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage.np
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+
+        $question = session()->get('question');
+        $game = session()->get('game');
+        if ($question!=null)
+        {
+            //        dd($request);
+            $gameAnswer = new Gameanswer();
+            $gameAnswer->game_id = $game;
+            $gameAnswer->answer_id = $request->answer_id;
+            $gameAnswer->save();
+            return redirect()->route('gameAnswer.create')->with('message', 'Antwoord opgeslagen');
+        }
+        else
+        {
+            return redirect()->route('game.show')->with('message', 'Antwoord opgeslagen');
+        }
     }
 
     /**

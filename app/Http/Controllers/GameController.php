@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Game;
+use App\Http\Requests\GameStoreRequest;
 use App\Quiz;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,7 @@ class GameController extends Controller
      */
     public function index()
     {
-        $game = Game::with('quizzes')->get();
-
+        $game = Game::all();
         return view('public.game.index', compact('game'));
     }
 
@@ -40,7 +40,14 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        dd($request);
+        $game = new Game();
+        $game->quiz_id = $request->quiz_id;
+        $game->user_id = $request->user_id;
+        $game->save();
+        $request->session()->put('game', $game->id);
+        $request->session()->put('quiz', $game->quiz_id);
+        return redirect()->route('gameAnswer.create')->with('message', 'test');
     }
 
     /**

@@ -31,18 +31,10 @@
             </select>
 
             <div class="form-group">
-                <label for="user" hidden>Speler</label>
-                <textarea hidden type="text" class="form-control" name="user" id="user"
-                          placeholder="user" value="{{$user->id}}" disabled>{{$user->name}}</textarea>
+                <label for="user_id" hidden>Speler</label>
+                <input type="hidden" value="{{$user->id}}" name="user_id" id="user_id">
             </div>
         </div>
-
-        <div class="form-group">
-            <label for="description">Punten</label>
-            <textarea type="text" class="form-control" name="description" id="description"
-                      placeholder="points" value="0" disabled>{{old('description')}}</textarea>
-        </div>
-
         <button type="Submit" class="btn btn-primary" name="PublishQuiz">Start de game</button>
 
     </form>
