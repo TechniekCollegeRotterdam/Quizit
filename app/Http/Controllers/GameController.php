@@ -14,8 +14,9 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->session()->forget('play','game','quiz','question_list');
         $game = Game::all();
         return view('public.game.index', compact('game'));
     }
@@ -25,11 +26,20 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $user = auth()->user();
-        $quizzes = quiz::all();
-        return view('public.game.create', compact('quizzes','user'));
+        $play=$request->session()->get('play');
+        if (isset($play))
+        {
+            return redirect(route('game.index'));
+        }
+
+        else
+        {
+            $user = auth()->user();
+            $quizzes = quiz::all();
+            return view('public.game.create', compact('quizzes','user'));
+        }
     }
 
     /**
@@ -47,7 +57,8 @@ class GameController extends Controller
         $game->save();
         $request->session()->put('game', $game->id);
         $request->session()->put('quiz', $game->quiz_id);
-        return redirect()->route('gameAnswer.create')->with('message', 'test');
+        $request->session()->forget('question_list');
+        return redirect()->route('gameAnswer.create');
     }
 
     /**

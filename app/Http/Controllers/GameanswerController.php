@@ -16,9 +16,8 @@ class GameanswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
     }
 
     /**
@@ -29,13 +28,49 @@ class GameanswerController extends Controller
     public function create(Request $request)
     {
 
-        $question = Question::where('quiz_id', $request->session()->get('quiz'))
-            ->inRandomOrder()
-                ->limit(1)
+
+
+        $play=$request->session()->get('play');
+        $quiz=$request->session()->get('quiz');
+//        dd($question_list);
+
+        if (!isset($play))
+        {
+            $questions = Question::where('quiz_id', $quiz)
+                ->inRandomOrder()
                 ->get();
-        $request->session()->put('question', $question);
-        return view('public.gameAnswer.create',compact('question'));
-//        return view('public.gameAnswer.create',compact('question'));
+
+            foreach ($questions as $questioninfo)
+            {
+                echo $questioninfo->id;
+                $request->session()->push('question_list',$questioninfo->id);
+            }
+            echo '<br>';
+            echo 'key0:',$request->session()->get('question_list')[0];
+            $request->session()->put('play',1);
+        }
+
+        $question_list=$request->session()->get('questions_list');
+
+//        dd($question_list);
+
+        if (isset($question_list))
+        {
+            $question_this=$request->session()->pull('question_list')[0];
+
+            $question = Question::where('id', $question_this);
+
+            $answers = Answer::where('question_id', $question_this)
+                ->inRandomOrder()
+                ->get();
+            return view('public.gameAnswer.create',compact('question','answers','quiz','game'));
+        }
+
+        if (!isset($question_list) and isset($play))
+        {
+            echo 'Dit zie je alleen als het niet werkt!!';
+        }
+
     }
 
     /**
@@ -47,22 +82,23 @@ class GameanswerController extends Controller
     public function store(Request $request)
     {
 
-        $question = session()->get('question');
+        $question_id = $request->session()->get('question_id');
+        dd($question_id);
         $game = session()->get('game');
-        if ($question!=null)
-        {
-            //        dd($request);
             $gameAnswer = new Gameanswer();
             $gameAnswer->game_id = $game;
             $gameAnswer->answer_id = $request->answer_id;
             $gameAnswer->save();
-            return redirect()->route('gameAnswer.create')->with('message', 'Antwoord opgeslagen');
-        }
-        else
+
+
+        if (isset($question_id))
         {
-            return redirect()->route('game.show')->with('message', 'Antwoord opgeslagen');
+            $request->session()->push('question_list', $question_id);
         }
+
+        return redirect()->route('gameAnswer.create')->with('message', 'Antwoord opgeslagen');
     }
+
 
     /**
      * Display the specified resource.
