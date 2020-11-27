@@ -4329,6 +4329,16 @@
                 "profiler",
                 "webprofiler"
             ],
+            "support": {
+                "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
+                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.5.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/barryvdh",
+                    "type": "github"
+                }
+            ],
             "time": "2020-09-07T19:32:39+00:00"
         },
         {
