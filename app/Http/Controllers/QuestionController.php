@@ -6,12 +6,22 @@ use App\Answer;
 use App\Http\Requests\QuestionStoreRequest;
 use App\Question;
 use App\Quiz;
-use DB;
 use Illuminate\Http\Request;
-use Symfony\Component\Console\Input\Input;
+
 
 class QuestionController extends Controller
 {
+
+    /** Set permissions on methods ...*/
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission: create question', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit question', ['only' => ['edit', 'update']]);
+        $this->middleware('permission: delete question', ['only' => ['delete', 'destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

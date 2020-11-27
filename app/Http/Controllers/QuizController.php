@@ -10,6 +10,17 @@ use Throwable;
 
 class QuizController extends Controller
 {
+
+    /** Set permissions on methods ...*/
+    public  function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:create quiz', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit quiz', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete quiz', ['only' => ['delete', 'destroy']]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +28,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quizzes = Quiz::with('Questions')->get();
+        $quizzes = Quiz::with('questions')->get();
 
         return view('admin.quizzes.index', compact('quizzes'));
     }
