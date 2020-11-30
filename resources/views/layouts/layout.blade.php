@@ -51,9 +51,12 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                 </li>
+
+                @hasanyrole('player|admin')
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('game.index')}}">Game</a>
                 </li>
+                @endhasanyrole
 
 
                 @hasanyrole('admin')
@@ -70,6 +73,7 @@
                     </div>
                 </li>
                 @endhasanyrole
+
                 <li class="nav-item float-right">
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
