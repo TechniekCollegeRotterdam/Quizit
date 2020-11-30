@@ -29,9 +29,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('quizzes/{quiz}/quiz', 'QuizController@delete')
         ->name('quizzes.delete');
     Route::resource('/quizzes', 'QuizController');
-});
 
-Route::group(['middleware' => ['role:admin']], function () {
     Route::get('questions/{question}/question', 'QuestionController@delete')
         ->name('questions.delete');
     Route::get('quizzes/{quiz}/questions/create', 'QuestionController@create')

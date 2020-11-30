@@ -17,9 +17,9 @@ class QuestionController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permission: create question', ['only' => ['create', 'store']]);
+        $this->middleware('permission:create question', ['only' => ['create', 'store']]);
         $this->middleware('permission:edit question', ['only' => ['edit', 'update']]);
-        $this->middleware('permission: delete question', ['only' => ['delete', 'destroy']]);
+        $this->middleware('permission:delete question', ['only' => ['delete', 'destroy']]);
     }
 
     /**
