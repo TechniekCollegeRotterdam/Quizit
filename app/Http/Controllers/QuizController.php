@@ -83,11 +83,7 @@ class QuizController extends Controller
      */
     public function edit(Quiz $quiz)
     {
-<<<<<<< Updated upstream
 
-
-=======
->>>>>>> Stashed changes
         $quizzes = Quiz::all();
         return view('admin.quizzes.edit', compact('quiz'));
     }
