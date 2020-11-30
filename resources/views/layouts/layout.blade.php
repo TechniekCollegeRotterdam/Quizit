@@ -56,7 +56,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('game.index')}}">Game</a>
                 </li>
+<<<<<<< HEAD
                 @endhasanyrole
+=======
+>>>>>>> 2663857... gitflow-feature-stash: hasanyrole
 
 
                 @hasanyrole('admin')
@@ -73,7 +76,10 @@
                     </div>
                 </li>
                 @endhasanyrole
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2663857... gitflow-feature-stash: hasanyrole
                 <li class="nav-item float-right">
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
