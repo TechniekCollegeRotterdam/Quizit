@@ -54,6 +54,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('game.index')}}">Game</a>
                 </li>
+
+
+                @hasanyrole('admin')
                 <li class="nav-item">
                     <div class="dropdown">
                         <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,6 +69,7 @@
                         </div>
                     </div>
                 </li>
+                @endhasanyrole
                 <li class="nav-item float-right">
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
