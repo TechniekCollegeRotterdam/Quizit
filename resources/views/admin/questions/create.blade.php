@@ -75,7 +75,7 @@
         </div>
 
         <div class="form-group">
-            <label for= "quiz_id">Quiz_id</label>
+            <label for="quiz_id" hidden>Quiz_id</label>
 
             <textarea hidden type="text" class="form-control input-field" name="quiz_id" id="quiz_id">{{$quiz->id}}</textarea>
 
