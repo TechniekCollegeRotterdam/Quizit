@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html>
 <head>
-    <title>Generate Pdf</title>
+    <title>Gebruikers_info</title>
 </head>
 <body>
 <h2 style="color: #1f6fb2">Gebruiker</h2
