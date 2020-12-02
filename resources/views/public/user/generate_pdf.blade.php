@@ -24,7 +24,7 @@
                 </tbody>
             </table>
 
-
+@if(!empty($quiz))
 <h2 style="color: #1f6fb2">Games</h2>
             <table width="14" border="4">
                 <thead style="border: #1d2124;color:#1d2124;">
@@ -42,6 +42,7 @@
                         <td>{{ $quiz_info->created_at }}</td>
                     </tr>
                 @endforeach
+                @endif
                 </tbody>
             </table>
 </body>

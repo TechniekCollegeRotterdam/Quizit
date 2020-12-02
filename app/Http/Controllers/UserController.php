@@ -35,7 +35,11 @@ class UserController extends Controller
         {
             $quiz_id[]=$game->quiz_id;
         }
-        $quiz = Quiz::whereIn('id', $quiz_id)->get();
+        if (isset($quiz_id))
+        {
+            $quiz = Quiz::whereIn('id', $quiz_id)->get();
+        }
+        else$quiz = null;
 
         $design = Design::where('id',$design_id)->get();
 

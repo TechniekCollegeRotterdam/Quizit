@@ -22,11 +22,17 @@ class PDFController extends Controller
 
         $qames = Game::where('user_id', $user_id)->get();
 
-        foreach ($qames as $game)
+        if (isset($games))
         {
-            $quiz_id[]=$game->quiz_id;
+            foreach ($qames as $game) {
+                $quiz_id[] = $game->quiz_id;
+            }
+            $quiz = Quiz::whereIn('id', $quiz_id)->get();
         }
-        $quiz = Quiz::whereIn('id', $quiz_id)->get();
+        else
+        {
+            $quiz = null;
+        }
 
         $design = Design::where('id',$design_id)->get();
 
@@ -34,7 +40,7 @@ class PDFController extends Controller
             'username' => $user->name,
             'email' => $user->email,
             'aangemaakt' => $user->created_at,
-            'quizzes' => $quiz,
+                'quizzes' => $quiz,
             'design' => $design[0]->name,
         ];
 
