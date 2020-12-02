@@ -52,12 +52,13 @@ class GameanswerController extends Controller
 
         $question_list=$request->session()->get('questions_list');
 
-//        dd($question_list);
+//        dd($request->session()->get('question_list'));
+//        dd($play);
 
         if (isset($question_list))
         {
             $question_this=$request->session()->pull('question_list')[0];
-
+//            dd($question_this);
             $question = Question::where('id', $question_this);
 
             $answers = Answer::where('question_id', $question_this)

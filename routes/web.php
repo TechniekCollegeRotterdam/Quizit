@@ -36,10 +36,12 @@ Route::group(['middleware' => ['role:admin']], function () {
         ->name('admin.questions.create');
     Route::post('quizzes/{quiz}/questions', 'QuestionController@store')
         ->name('admin.questions.store');
-
     Route::resource('/questions', 'QuestionController');
 });
 
+Route::resource('/user','UserController');
+
+Route::get('/generate-user-pdf','PDFController@generateUserPDF');
 
 Route::resource('/game', 'GameController');
 Route::resource('/gameAnswer', 'GameanswerController');

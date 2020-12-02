@@ -29,7 +29,7 @@ class GameController extends Controller
     public function create(Request $request)
     {
         $play=$request->session()->get('play');
-        if (isset($play))
+        if (!empty($play))
         {
             return redirect(route('game.index'));
         }

@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
         factory(User::class, 1)->create([
             'name'=>'Player',
             'email'=>'player@quizit.com',
+            'design_id'=>1,
             'password' => bcrypt('PlayerPasswordQuizit')])
             ->each(function (User $user) {
                 $user->assignRole('player');
@@ -22,12 +23,13 @@ class UserSeeder extends Seeder
         factory(User::class, 1)->create([
             'name'=>'Admin',
             'email'=>'admin@quizit.com',
+            'design_id'=>1,
             'password'=>bcrypt('AdminPasswordQuizit')])
             ->each(function (User $user) {
                 $user->assignRole('admin');
             });
 
-        factory(User::class, 50)->create();
+//        factory(User::class, 50)->create();
 
     }
 }
