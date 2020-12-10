@@ -36,6 +36,7 @@
                         <th scope="col">Aangemaakt</th>
                         <th scope="col">Aangepast</th>
                         <th scope="col">Vraag & Antwoorden</th>
+                        <th scope="col">Vraag Aanpassen</th>
                         <th scope="col">Vraag Verwijderen</th>
                     </tr>
                     </thead>
@@ -63,10 +64,12 @@
                                 <a class="nav-link" href="{{route('questions.show',['question' => $question->id])}}">Vraag & Andwoord Details</a>
                             </td>
                             <td>
+                                <a class="nav-link" href="{{route('questions.edit', ['question' => $question->id])}}">Vraag en antwoorden aanpassen</a>
+                            </td>
+                            <td>
                                  <a href="{{route('questions.delete',['question' => $question->id])}}">Vraag verwijderen</a>
                             </td>
                                  @endforeach
-                    </tbody>
                     </tbody>
                 </table>
             </li>

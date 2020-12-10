@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\QuizStoreRequest;
+use App\Http\Requests\QuizUpdateRequest;
 use App\Quiz;
 use Illuminate\Http\Request;
 use Throwable;
@@ -84,7 +85,7 @@ class QuizController extends Controller
     public function edit(Quiz $quiz)
     {
 
-        $quizzes = Quiz::all();
+
         return view('admin.quizzes.edit', compact('quiz'));
     }
 
@@ -95,12 +96,12 @@ class QuizController extends Controller
      * @param  \App\Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quiz $quiz)
+    public function update(QuizUpdateRequest $request, Quiz $quiz)
     {
         $quiz->name = $request->name;
         $quiz->description = $request->description;
         $quiz->save();
-        return  redirect()->route('quizzes.index')->with('message','Quiz geupdate');
+        return redirect()->route('quizzes.index')->with('message','Quiz geupdate');
     }
 
 

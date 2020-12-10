@@ -26,9 +26,12 @@ Route::get('designs/{design}/delete', 'DesignController@delete')->name('designs.
 Route::resource('/designs', 'DesignController');
 
 Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('quizzes/{quiz}/show', 'QuizController@show')
+        ->name('admin.quizzes.show');
     Route::get('quizzes/{quiz}/quiz', 'QuizController@delete')
         ->name('quizzes.delete');
     Route::resource('/quizzes', 'QuizController');
+
 
     Route::get('questions/{question}/question', 'QuestionController@delete')
         ->name('questions.delete');
@@ -36,6 +39,13 @@ Route::group(['middleware' => ['role:admin']], function () {
         ->name('admin.questions.create');
     Route::post('quizzes/{quiz}/questions', 'QuestionController@store')
         ->name('admin.questions.store');
+    Route::get('quizzes/{quiz}/questions/{question}/edit', 'QuestionController@edit')
+        ->name('admin.questions.edit');
+    Route::post('quizzes/{quiz}/questions/{question}/edit', 'QuestionController@update')
+        ->name('admin.questions.edit');
+    Route::put('quizzes/{quiz}/questions/{question}', 'QuestionController@update')
+        ->name('admin.questions.update');
+
 
     Route::resource('/questions', 'QuestionController');
 });

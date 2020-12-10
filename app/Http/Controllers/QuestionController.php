@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use App\Http\Requests\QuestionStoreRequest;
+use App\Http\Requests\QuestionUpdateRequest;
 use App\Question;
 use App\Quiz;
 use Illuminate\Http\Request;
@@ -110,24 +111,68 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Question  $question
+     * @param Quiz $quiz
+     * @param \App\Question $question
      * @return \Illuminate\Http\Response
      */
     public function edit(Question $question)
     {
-        return view('admin.quizzes.edit', compact('question'));
+        $quizzes = Quiz::all();
+
+        $answers = Answer::where('question_id', $question->id)->orderBy('valid', 'DESC')->get();
+        return view('admin.questions.edit', compact('question', 'quizzes', 'answers'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Question  $question
+     * @param QuestionUpdateRequest $request
+     * @param \App\Question $question
+     * @param Quiz $quiz
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(QuestionUpdateRequest $request, Question $question, Answer $answer)
     {
-        //
+        $question->question = $request->question;
+        $question->points = $request->points;
+        $question->quiz_id = $request->quiz_id;
+        $question->save();
+
+        if ($question->goodanswer != $request->goodanswer) {
+            $answer->answer = $request->goodanswer;
+            $answer->valid = 1;
+            $answer->question_id = $question->id;
+            $answer->save();
+        }
+
+        if ($question->wronganswer1 != $request->wronganswer1) {
+            $wronganswer1 = $answer;
+            $wronganswer1->answer = $request->wronganswer1;
+            $wronganswer1->valid = 0;
+            $wronganswer1->question_id = $question->id;
+            $wronganswer1->save();
+        }
+
+        if ($question->wronganswer2 != $request->wronganswer2) {
+            $wronganswer2 = $answer;
+            $wronganswer2->answer = $request->wronganswer2;
+            $wronganswer2->valid = 0;
+            $wronganswer2->question_id = $question->id;
+            $wronganswer2->save();
+        }
+
+        if ($question->wronganswer3 != $request->wronganswer3) {
+            $wronganswer3 = $answer;
+            $wronganswer3->answer = $request->wronganswer3;
+            $wronganswer3->valid = 0;
+            $wronganswer3->question_id = $question->id;
+            $wronganswer3->save();
+        }
+
+
+
+
+        return redirect()->route('quizzes.index')->with('message', 'Vraag geupdate');
     }
 
     /**
