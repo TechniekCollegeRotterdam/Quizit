@@ -39,8 +39,6 @@ Route::group(['middleware' => ['role:admin']], function () {
         ->name('admin.questions.create');
     Route::post('quizzes/{quiz}/questions', 'QuestionController@store')
         ->name('admin.questions.store');
-<<<<<<< HEAD
-=======
     Route::get('quizzes/{quiz}/questions/{question}/edit', 'QuestionController@edit')
         ->name('admin.questions.edit');
     Route::post('quizzes/{quiz}/questions/{question}/edit', 'QuestionController@update')
@@ -49,7 +47,6 @@ Route::group(['middleware' => ['role:admin']], function () {
         ->name('admin.questions.update');
 
 
->>>>>>> editquestion
     Route::resource('/questions', 'QuestionController');
 });
 
