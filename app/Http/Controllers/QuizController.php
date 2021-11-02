@@ -59,7 +59,7 @@ class QuizController extends Controller
         $quiz->save();
 
         return redirect()->route('quizzes.index')->with('message', 'Quiz toegevoegd');
-        }
+    }
 
 
 

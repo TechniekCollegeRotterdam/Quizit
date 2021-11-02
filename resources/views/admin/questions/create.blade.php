@@ -34,7 +34,6 @@
         @csrf
 
 
-
         <div class="form-group">
             <label for="question">Vraag</label>
             <input type="text" name="question" class="form-control" id="question"
@@ -48,43 +47,48 @@
         </div>
 
 
+
         <div class="form-group">
-            <label for="goodanswer" class="text-success"><strong>Goed Antwoord</strong></label>
-            <input type="text" class="form-control" name="goodanswer" id="goodanswer"
-                      placeholder="Voer het goede antwoord in" value="{{old('goodanswer')}}">
+            <label for="answer1" name="name"><strong>Optie 1</strong></label>
+            <input type="text" class="form-control" name="answer1" id="answer1"
+                      placeholder="Voer de eerste optie in" value="{{old('answer1')}}">
         </div>
 
 
         <div class="form-group">
-            <label for="wronganswer1" class="text-danger"><strong>Fout antwoord 1</strong></label>
-                <input type="text" class="form-control" name="wronganswer1" id="wronganswer1"
-                    placeholder="Voer het eerste foute antwoord in" value="{{old('wronganswer1')}}">
+            <label for="answer2"><strong>Optie 2</strong></label>
+                <input type="text" class="form-control" name="answer2" id="answer2"
+                    placeholder="Voer de tweede optie in" value="{{old('answer2')}}">
         </div>
 
 
             <div class="form-group">
-                <label for="wronganswer2" class="text-danger"><strong>Fout antwoord 2</strong></label>
-                <input type="text" class="form-control" name="wronganswer2" id="wronganswer2"
-                   placeholder="Voer het tweede foute antwoord in" value="{{old('wronganswer2')}}">
+                <label for="answer3"><strong>Optie 3</strong></label>
+                <input type="text" class="form-control" name="answer3" id="answer3"
+                   placeholder="Voer de derde optie in" value="{{old('answer3')}}">
             </div>
 
         <div class="form-group">
-            <label for="wronganswer3" class="text-danger"><strong>Fout antwoord 3</strong></label>
-            <input type="text" class="form-control" name="wronganswer3" id="wronganswer3"
-                   placeholder="Voer het derde foute antwoord in" value="{{old('wronganswer3')}}">
+            <label for="answer4"><strong>Optie 4</strong></label>
+            <input type="text" class="form-control" name="answer4" id="answer4"
+                   placeholder="Voer de vierde optie in" value="{{old('answer4')}}">
+        </div>
+
+
+        <div class="form-group">
+            <label for="correct" id="correct">Correct antwoord</label>
+            <select id="correct" name="correct" class="form-control">
+                <option @if(old('correct')==="answer1") selected @endif value="answer1">Optie 1</option>
+                <option @if(old('correct')==="answer2") selected @endif value="answer2">Optie 2</option>
+                <option @if(old('correct')==="answer3") selected @endif value="answer3">Optie 3</option>
+                <option @if(old('correct')==="answer4") selected @endif value="answer4">Optie 4</option>
+            </select>
         </div>
 
         <div class="form-group">
             <label for="quiz_id" hidden>Quiz_id</label>
-
             <textarea hidden type="text" class="form-control input-field" name="quiz_id" id="quiz_id">{{$quiz->id}}</textarea>
-
-
         </div>
-
-
-
-
 
         <button type="submit" name="AddQuestion" id="AddQuestion" class="btn btn-primary" value="AddQuestion">Vraag toevoegen</button>
         <button type="Submit" name="PublishQuestion" value="PublishQuestion">Publiceer vraag</button>

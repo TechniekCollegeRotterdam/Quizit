@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Question;
 
 class QuestionSeeder extends Seeder
 {
@@ -9,8 +10,9 @@ class QuestionSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
-        //
     }
 }
+

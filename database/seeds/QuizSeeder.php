@@ -16,20 +16,17 @@ class QuizSeeder extends Seeder
     {
         factory(Quiz::class, 3)->create()
             ->each(function ($quiz) {
-                $quiz->questions()->saveMany(factory(Question::class, rand(5, 10))->make())->each(function ($question){
-                        $question->answer()->saveMany(factory(Answer::class, 4)->make());
 
-                    });
-    });
-        $questions = Question::all();
+                $quiz->questions()->saveMany(factory(Question::class, 10)
+                    ->create(['quiz_id' => $quiz->id])
+                    ->each(function ($question) {
 
-        foreach($questions as $question){
-            $answer_id = $question->answer->random()->id;
-            $answer = Answer::find($answer_id);
-            $answer->valid = 1;
-            $answer->answer='goed';
-            $answer->save();
+                        $question->correct_answer()->saveMany(factory(Answer::class, 1))
+                            ->create(['question_id' => $question->id, 'correct_answer' => $question->correct]);
 
-        }
+                    }));
+            });
     }
 }
+
+

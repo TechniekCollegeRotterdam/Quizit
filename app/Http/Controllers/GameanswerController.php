@@ -86,10 +86,10 @@ class GameanswerController extends Controller
         $question_id = $request->session()->get('question_id');
         dd($question_id);
         $game = session()->get('game');
-            $gameAnswer = new Gameanswer();
-            $gameAnswer->game_id = $game;
-            $gameAnswer->answer_id = $request->answer_id;
-            $gameAnswer->save();
+        $gameAnswer = new Gameanswer();
+        $gameAnswer->game_id = $game;
+        $gameAnswer->answer_id = $request->answer_id;
+        $gameAnswer->save();
 
 
         if (isset($question_id))

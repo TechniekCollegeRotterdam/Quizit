@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use App\Http\Requests\QuestionStoreRequest;
+use App\Http\Requests\t;
 use App\Http\Requests\QuestionUpdateRequest;
 use App\Question;
 use App\Quiz;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Sabberworm\CSS\Rule\Rule;
 
 
 class QuestionController extends Controller
@@ -41,9 +45,10 @@ class QuestionController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Quiz $quiz)
+    public function create(Quiz $quiz, Answer $answer, Question $question)
     {
-        return view('admin.questions.create', compact('quiz'));
+        return view('admin.questions.create', compact('quiz', 'answer', 'question'));
+
     }
 
     /**
@@ -52,39 +57,26 @@ class QuestionController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(QuestionStoreRequest $request)
+    public function store(QuestionStoreRequest $request, Question $question, Answer $answer)
     {
         $question = new Question();
         $question->question = $request->question;
         $question->points = $request->points;
+        $question->answer1 = $request->answer1;
+        $question->answer2 = $request->answer2;
+        $question->answer3 = $request->answer3;
+        $question->answer4 = $request->answer4;
+        $question->correct = $request->correct;
         $question->quiz_id = $request->quiz_id;
         $question->save();
 
-        $goodanswer = new Answer();
-        $goodanswer->answer = $request->goodanswer;
-        $goodanswer->valid = 1;
-        $goodanswer->question_id = $question->id;
-        $goodanswer->save();
 
+        $correctanswer = $question->correct;
 
-        $wronganswer1 = new Answer();
-        $wronganswer1->answer = $request->wronganswer1;
-        $wronganswer1->valid = 0;
-        $wronganswer1->question_id = $question->id;
-        $wronganswer1->save();
-
-        $wronganswer2 = new Answer();
-        $wronganswer2->answer = $request->wronganswer2;
-        $wronganswer2->valid = 0;
-        $wronganswer2->question_id = $question->id;
-        $wronganswer2->save();
-
-        $wronganswer3 = new Answer();
-        $wronganswer3->answer = $request->wronganswer3;
-        $wronganswer3->valid = 0;
-        $wronganswer3->question_id = $question->id;
-        $wronganswer3->save();
-
+        $answer = new Answer();
+        $answer->correct_answer = $correctanswer;
+        $answer->question_id = $question->id;
+        $answer->save();
 
         if
         ($request->has('AddQuestion')) {
@@ -95,7 +87,9 @@ class QuestionController extends Controller
         ($request->has('PublishQuestion')) {
             return redirect()->route('quizzes.index')->with('message', 'vraag en antwoorden toegevoegd');
         }
+
     }
+
 
     /**
      * Display the specified resource.
@@ -111,16 +105,14 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Quiz $quiz
      * @param \App\Question $question
+     * @param Answer $answer
      * @return \Illuminate\Http\Response
      */
     public function edit(Question $question)
     {
         $quizzes = Quiz::all();
-
-        $answers = Answer::where('question_id', $question->id)->orderBy('valid', 'DESC')->get();
-        return view('admin.questions.edit', compact('question', 'quizzes', 'answers'));
+        return view('admin.questions.edit', compact('question', 'quizzes'));
     }
 
     /**
@@ -128,48 +120,43 @@ class QuestionController extends Controller
      *
      * @param QuestionUpdateRequest $request
      * @param \App\Question $question
-     * @param Quiz $quiz
+     * @param Answer $answer
      * @return \Illuminate\Http\Response
      */
     public function update(QuestionUpdateRequest $request, Question $question, Answer $answer)
     {
+
+
+
+        $question_id = $question->id;
+
+
         $question->question = $request->question;
         $question->points = $request->points;
+        $question->answer1 = $request->answer1;
+        $question->answer2 = $request->answer2;
+        $question->answer3 = $request->answer3;
+        $question->answer4 = $request->answer4;
+        $question->correct = $request->correct;
         $question->quiz_id = $request->quiz_id;
         $question->save();
 
-        if ($question->goodanswer != $request->goodanswer) {
-            $answer->answer = $request->goodanswer;
-            $answer->valid = 1;
-            $answer->question_id = $question->id;
-            $answer->save();
-        }
 
-        if ($question->wronganswer1 != $request->wronganswer1) {
-            $wronganswer1 = $answer;
-            $wronganswer1->answer = $request->wronganswer1;
-            $wronganswer1->valid = 0;
-            $wronganswer1->question_id = $question->id;
-            $wronganswer1->save();
-        }
+        $correctanswer = $question->correct;
+        $answer->id = $answer->incrementing;
 
-        if ($question->wronganswer2 != $request->wronganswer2) {
-            $wronganswer2 = $answer;
-            $wronganswer2->answer = $request->wronganswer2;
-            $wronganswer2->valid = 0;
-            $wronganswer2->question_id = $question->id;
-            $wronganswer2->save();
-        }
+     $answer = Answer::updateOrCreate(
+         ['question_id' => $question->id],
 
-        if ($question->wronganswer3 != $request->wronganswer3) {
-            $wronganswer3 = $answer;
-            $wronganswer3->answer = $request->wronganswer3;
-            $wronganswer3->valid = 0;
-            $wronganswer3->question_id = $question->id;
-            $wronganswer3->save();
-        }
+         [
+             'correct_answer' => $correctanswer,
+             'question_id' => $question_id,
+             ]
+     );
 
 
+
+        $answer->save();
 
 
         return redirect()->route('quizzes.index')->with('message', 'Vraag geupdate');

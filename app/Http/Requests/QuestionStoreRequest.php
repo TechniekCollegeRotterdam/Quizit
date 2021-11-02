@@ -27,10 +27,12 @@ class QuestionStoreRequest extends FormRequest
         return [
             'question' => 'required|unique:questions|max:250',
             'points' => 'required|numeric|min:0|max:10',
-            'goodanswer' => 'required',
-            'wronganswer1' => 'required',
-            'wronganswer2' => 'required',
-            'wronganswer3' => 'required',
+            'answer1' => 'required|string|min:5|max:250',
+            'answer2' => 'required|string|min:5|max:250',
+            'answer3' => 'required|string|min:5|max:250',
+            'answer4' => 'required|string|min:5|max:250',
+            'correct' => 'required',
         ];
     }
 }
+

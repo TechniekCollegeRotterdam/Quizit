@@ -15,7 +15,6 @@
     @endif
 
 
-
     <nav class="nav">
         <ul class="nav nav-tabs">
             <li class="nav-item">

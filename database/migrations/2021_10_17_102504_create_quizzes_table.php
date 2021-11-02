@@ -1,4 +1,4 @@
-<?php
+\<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -31,3 +31,4 @@ class CreateQuizzesTable extends Migration
         Schema::dropIfExists('quizzes');
     }
 }
+

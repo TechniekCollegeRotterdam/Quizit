@@ -25,7 +25,7 @@ class QuizUpdateRequest extends FormRequest
     {
         $quiz = $this->route('quiz');
         return [
-            'name' => 'required|unique:quizzes|max:45,'.$quiz->id,
+            'name' => 'required|max:45|unique:quizzes,name,'.$quiz->id,
             'description' => 'required'
         ];
     }

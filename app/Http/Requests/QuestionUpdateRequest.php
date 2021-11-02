@@ -25,12 +25,13 @@ class QuestionUpdateRequest extends FormRequest
     {
         $question = $this->route('question');
         return [
-            'question' => 'required|max:250|unique:questions,question,'.$question->id,
+            'question' => 'required|max:250|unique:questions,question,' .$question->id,
             'points' => 'required|numeric|min:0|max:10',
-            'goodanswer' => 'required',
-            'wronganswer1' => 'required',
-            'wronganswer2' => 'required',
-            'wronganswer3' => 'required',
+            'answer1' => 'required|string|min:5|max:250',
+            'answer2' => 'required|string|min:5|max:250',
+            'answer3' => 'required|string|min:5|max:250',
+            'answer4' => 'required|string|min:5|max:250',
+            'correct' => 'required',
         ];
     }
 }

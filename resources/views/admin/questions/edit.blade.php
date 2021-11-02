@@ -25,66 +25,81 @@
     </nav>
 
 
-    <form method="POST" action="{{route('questions.update', ['question' => $question->id])}}">
-        @method('PUT')
-        @csrf
+ <form method="POST" action="{{route('questions.update', ['question' => $question->id])}}">
+     @method('PUT')
+     @csrf
+
+    <div class="form-group">
+        <label for="question">Vraag</label>
+        <input type="text" name="question" class="form-control" id="question"
+               aria-describedby="nameHelp" placeholder="Voer de vraag in" value="{{old('question', $question->question)}}">
+    </div>
+
+    <div class="form-group">
+        <label for="points">Punten</label>
+        <input type="number" step="1" min="0" max="10" name="points" id="points" class="form-control"
+               aria-describedby="pointHelp" placeholder="Voer het aantal punten in voor deze vraag" value="{{old('points', $question->points)}}">
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="answer1" name="name"><strong>Optie 1</strong></label>
+        <input type="text" class="form-control" name="answer1" id="answer1"
+               placeholder="Voer de eerste optie in" value="{{old('answer1', $question->answer1)}}">
+    </div>
+
+
+    <div class="form-group">
+        <label for="answer2"><strong>Optie 2</strong></label>
+        <input type="text" class="form-control" name="answer2" id="answer2"
+               placeholder="Voer de tweede optie in" value="{{old('answer2', $question->answer2)}}">
+    </div>
+
+
+    <div class="form-group">
+        <label for="answer3"><strong>Optie 3</strong></label>
+        <input type="text" class="form-control" name="answer3" id="answer3"
+               placeholder="Voer de derde optie in" value="{{old('answer3', $question->answer3)}}">
+    </div>
+
+    <div class="form-group">
+        <label for="answer4"><strong>Optie 4</strong></label>
+        <input type="text" class="form-control" name="answer4" id="answer4"
+               placeholder="Voer de vierde optie in" value="{{old('answer4', $question->answer4)}}">
+    </div>
+
+
+    <div class="form-group">
+        <label for="correct" id="correct">Correct antwoord</label>
+        <select id="correct" name="correct" class="form-control">
+            <option @if($question->correct==="answer1") selected @endif value="answer1">Optie 1</option>
+            <option @if($question->correct==="answer2") selected @endif value="answer2">Optie 2</option>
+            <option @if($question->correct==="answer3") selected @endif value="answer3">Optie 3</option>
+            <option @if($question->correct==="answer4") selected @endif value="answer4">Optie 4</option>
+
+        </select>
+    </div>
+
+
+
+
 
         <div class="form-group">
-            <label for="question">Vraag</label>
-            <input type="text" name="question" class="form-control" id="question"
-                   aria-describedby="nameHelp" placeholder="Voer de vraag in" value="{{old('question', $question->question) }}">
-        </div>
-
-        <div class="form-group">
-            <label for="points">Punten</label>
-            <input type="number" step="1" min="0" max="10" name="points" id="points" class="form-control"
-                   aria-describedby="pointHelp" placeholder="Voer het aantal punten in voor deze vraag" value="{{old('points', $question->points)}}">
-        </div>
-       @php($i = 1)
-@foreach($answers as $answer)
-            <div class="form-group">
-                <label for="{{ $answer->valid == 1 ? 'goodanswer' : 'wronganswer' . $i }}" class="{{ $answer->valid == 1 ? 'text-success' : 'text-danger' }}"><strong>{{ $answer->valid == 1 ? 'Goed antwoord' : 'Fout antwoord ' . $i }}</strong></label>
-                <input type="text" class="form-control" name="{{ $answer->valid == 1 ? 'goodanswer' : 'wronganswer' . $i }}" id="{{ $answer->valid == 1 ? 'goodanswer' : 'wronganswer' . $i }}"
-                       placeholder="Voer het eerste foute antwoord in" value="{{old( $answer->valid == 1 ? 'goodanswer' : 'wronganswer' . $i, $answer->answer)}}">
-            </div>
-     @if($answer->valid != 1 )
-                @php ($i++)
-            @endif
-        @endforeach
-
-{{--        <div class="form-group">--}}
-{{--            <label for="goodanswer" class="text-success"><strong>Goed Antwoord</strong></label>--}}
-{{--            <input type="text" class="form-control" name="goodanswer" id="goodanswer"--}}
-{{--                   placeholder="Voer het goede antwoord in" value="{{old('goodanswer', $question->goodanswer)}}">--}}
-{{--        </div>--}}
-
-
-
-{{--        <div class="form-group">--}}
-{{--            <label for="wronganswer2" class="text-danger"><strong>Fout antwoord 2</strong></label>--}}
-{{--            <input type="text" class="form-control" name="wronganswer2" id="wronganswer2"--}}
-{{--                   placeholder="Voer het tweede foute antwoord in" value="{{old('wronganswer2', $question->wronganswer2)}}">--}}
-{{--        </div>--}}
-
-{{--        <div class="form-group">--}}
-{{--            <label for="wronganswer3" class="text-danger"><strong>Fout antwoord 3</strong></label>--}}
-{{--            <input type="text" class="form-control" name="wronganswer3" id="wronganswer3"--}}
-{{--                   placeholder="Voer het derde foute antwoord in" value="{{old('wronganswer3', $question->wronganswer3)}}">--}}
-{{--        </div>--}}
-        <div class="form-group">
-            <label for="quiz_id">Quiz_id</label>
+            <label for="quiz_id">Quiznaam</label>
             <select name="quiz_id" id="quiz_id" class="form-control">
             @foreach($quizzes as $quiz)
                 <option value="{{ $quiz->id }}"
                 @if(old('quiz_id',$question->quiz_id) == $quiz->id)
                     selected
                    @endif
-                >{{ $quiz->id }}</option>
+                >{{ $quiz->name }}</option>
             @endforeach
             </select>
         </div>
         <button type="submit" class="btn-primary">Aanpassen</button>
 
     </form>
+
 
 @endsection

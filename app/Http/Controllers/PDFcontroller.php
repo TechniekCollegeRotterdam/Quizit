@@ -40,7 +40,7 @@ class PDFController extends Controller
             'username' => $user->name,
             'email' => $user->email,
             'aangemaakt' => $user->created_at,
-                'quizzes' => $quiz,
+            'quizzes' => $quiz,
             'design' => $design[0]->name,
         ];
 

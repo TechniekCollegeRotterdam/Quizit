@@ -15,16 +15,18 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->text('answer');
-            $table->boolean('valid');
+            $table->enum("correct_answer", ["answer1", "answer2", "answer3", "answer4"]);
             $table->unsignedBigInteger('question_id');
             $table->foreign('question_id')
                 ->references('id')->on('questions')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
+
+
 
     /**
      * Reverse the migrations.

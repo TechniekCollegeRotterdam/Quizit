@@ -41,8 +41,6 @@ Route::group(['middleware' => ['role:admin']], function () {
         ->name('admin.questions.store');
     Route::get('quizzes/{quiz}/questions/{question}/edit', 'QuestionController@edit')
         ->name('admin.questions.edit');
-    Route::post('quizzes/{quiz}/questions/{question}/edit', 'QuestionController@update')
-        ->name('admin.questions.edit');
     Route::put('quizzes/{quiz}/questions/{question}', 'QuestionController@update')
         ->name('admin.questions.update');
 
