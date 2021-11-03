@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-    <h1 class="mt-5">Categories/verwijderen</h1>
+    <h1 class="mt-5">Quizzes/verwijderen</h1>
 
 
     <nav class="nav">
