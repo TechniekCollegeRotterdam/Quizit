@@ -123,10 +123,9 @@ class QuizController extends Controller
             $quiz->delete();
         } catch (Throwable $e){
             report($e);
-            return redirect()->route('quizzes.index')->with('wrong','quiz bevat vragen.
-            Verwijder deze alvorens deze quiz te verwijderen.');
+            return redirect()->route('quizzes.index')->with('wrong','Deze quiz bevat vragen.
+            Verwijder deze vragen alvorens deze quiz te verwijderen.');
         }
-        $quiz->delete();
-        return  redirect()->route('quizzes.index')->with('message','quiz Verwijderd');
+        return redirect()->route('quizzes.index')->with('message','Quiz Verwijderd');
     }
 }

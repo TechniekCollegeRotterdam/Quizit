@@ -170,7 +170,7 @@ class QuestionController extends Controller
      */
 
     //** show the form for deleting the specified resource. ...*/*/
-    public function delete(quiz $question)
+    public function delete(Question $question)
     {
         return view('admin.questions.delete', compact('question'));
     }
@@ -178,6 +178,6 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         $question->delete();
-        return  redirect()->route('quizzes.index')->with('message','vraag Verwijderd');
+        return  redirect()->route('quizzes.index')->with('message','Vraag Verwijderd');
     }
 }

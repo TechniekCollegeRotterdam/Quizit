@@ -34,11 +34,18 @@
 
         <div class="form-group">
             <label for="name">
-                Categorie naam
+                Quiznaam
             </label>
-            <p class="text-danger border border-dark">{{$quiz->name}}</p>
-            <input type="hidden" class="form-control" name="name"
-                   aria-describedby="categorienameHelp" value="{{$quiz->name}}">
+            <input type="text" disabled="disabled" class="form-control" name="name"
+                   aria-describedby="categorienameHelp" id="name" value="{{$quiz->name}}">
+        </div>
+
+        <div class="form-group">
+            <label for="description">
+                Beschrijving
+            </label>
+            <input type="text" class="form-control" name="description" id="descripton"
+                   disabled="disabled" value="{{$quiz->description}}">
         </div>
         <button type="submit"  class="btn-danger">Delete</button>
 
